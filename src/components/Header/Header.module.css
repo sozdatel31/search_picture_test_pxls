@@ -1,0 +1,244 @@
+* {
+    font-family: -apple-system, BlinkMacSystemFont, segoe ui, roboto, oxygen, cantarell, helvetica neue, ubuntu, sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.box {
+    position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 1.15rem;
+    padding-top: 74px;
+    padding-bottom: 66px;
+    color: #fff;
+    background-color: #d3d3d3;
+    text-decoration: none;
+    height: 500px;
+    min-height: 380px;
+    z-index: 1;
+    background-size: cover;
+
+    background-image: url("https://images.pexels.com/photos/5232649/pexels-photo-5232649.jpeg?auto=compress&cs=tinysrgb&fit=crop&fp-y=0.54&h=500&sharp=20&w=1500");
+}
+
+.headerContainer {
+    background: #232a34;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 66px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0 1.15rem;
+    z-index: 30;
+}
+
+.logoContainer {
+    font-size: 19px;
+    line-height: 1;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #fff;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logoText:hover {
+    opacity: 0.8;
+}
+
+.logo {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.logo svg {
+    border-radius: 8px;
+    height: 40px;
+    width: 40px;
+}
+
+.logoText {
+    margin-left: 1rem;
+}
+
+.headerContainer > *:not(:last-child) {
+    margin-right: 2.15rem;
+}
+
+.searchInputContainer {
+    background: rgba(255, 255, 255, .95);
+    display: -webkit-box;
+    display: flex;
+    width: 50vh;
+    border: none;
+    border-radius: 6px;
+    z-index: 1;
+}
+
+.searchInputContainer input {
+    padding: .9rem 1.25rem;
+    display: block;
+    -webkit-flex: 1 1;
+    flex: 1 1;
+
+    font-weight: 300;
+    font-size: 17px;
+    color: #1a1a1a;
+    background-color: #fff;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border: none;
+    outline: 0;
+    line-height: 22px;
+    font-family: inherit;
+}
+
+.searchInputContainer button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: #fff;
+    padding: 0 1rem;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    line-height: inherit;
+}
+
+.centerContainer  {
+    max-width: 650px;
+    width: 100%;
+    z-index: 3;
+}
+
+.centerContent {
+    display: block;
+    font-size: 36px;
+    line-height: 48px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.tagsContainer {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.tagsContent {
+
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+    list-style: none;
+    white-space: nowrap;
+    width: 100%;
+    margin: 0;
+    padding: .6rem 0;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.tagsSuggested {
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: -webkit-match-parent;
+}
+
+.tag {
+    display: block;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 300;
+    margin: 0 0.2rem 0 0.6rem;
+    display: inline-block;
+    opacity: .8;
+}
+
+.tag a {
+    text-decoration: none;
+    color: inherit;
+    opacity: 0.7;
+}
+
+.tag a:hover {
+    opacity: 1;
+}
+
+.footer {
+    font-size: 12px;
+    line-height: 19px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: absolute;
+    height: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 0 1.15rem;
+    z-index: 3;
+}
+
+.footerItem {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 100%;
+    font-weight: inherit;
+}
+
+.footerPhotographer {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 100%;
+    font-weight: inherit;
+}
+
+.footerPhotographer a {
+    text-decoration: none;
+    color: inherit;
+    opacity: 0.7;
+    font-weight: 300;
+}
+
+.footerPhotographer a:hover {
+    opacity: 1;
+}
+
+.headerInput {
+    width: 45%;
+}

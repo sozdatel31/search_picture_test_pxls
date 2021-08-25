@@ -1,0 +1,54 @@
+.searchInputContainer{
+    background: rgba(255,255,255,.95);
+    display: -webkit-box;
+    display: flex;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    z-index: 1;
+}
+
+.rd__svg-icon {
+    fill: #5e5e5e;
+    width: 25px;
+    height: 25px;
+    position: relative;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-style: normal;
+}
+
+.searchInputContainer input {
+    padding: .9rem 1.25rem;
+    display: block;
+    -webkit-flex: 1 1;
+    flex: 1 1;
+
+    font-weight: 300;
+    font-size: 17px;
+    color: #1a1a1a;
+    background-color: #fff;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border: none;
+    outline: 0;
+    line-height: 22px;
+    font-family: inherit;
+}
+
+.searchInputContainer button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: #fff;
+    padding: 0 1rem;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    line-height: inherit;
+}
