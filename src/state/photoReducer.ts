@@ -1,7 +1,6 @@
 import {ThunkAction} from "redux-thunk";
 import {AppRootStateType} from "./store";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {PhotoContainerType} from "../components/PhotoContainer/PhotoContainer";
 import {PhotoType} from "../App";
 import {appApi} from "../api/api";
 
@@ -15,8 +14,7 @@ const slice = createSlice({
     initialState: initialState,
     reducers: {
         setPhotoAC(state, action: PayloadAction<{ photo: Array<PhotoType> }>) {
-           return action.payload.photo.map(m => m)
-
+           return action.payload.photo
         },
         // removePictureAC(state, action: PayloadAction<{ photoId: string }>) {
         //     const index = state.findIndex(ph => ph.id === action.payload.photoId)
