@@ -3,7 +3,7 @@ import style from './PhotoContainer.module.css'
 import Masonry from "react-masonry-css";
 import {PhotoType} from "../../App";
 
-type PhotoContainerType = {
+export type PhotoContainerType = {
     photoArr: Array<PhotoType>
 }
 
