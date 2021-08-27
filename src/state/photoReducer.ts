@@ -13,8 +13,9 @@ const slice = createSlice({
     name: "photoReducer",
     initialState: initialState,
     reducers: {
-        setPhotoAC(state, action: PayloadAction<{ photo: Array<PhotoType> }>) {
-           return action.payload.photo
+        setPhoto(state, action: PayloadAction<{ photo: Array<PhotoType> }>) {
+            state.push(...action.payload.photo)
+           return state
         },
         // removePictureAC(state, action: PayloadAction<{ photoId: string }>) {
         //     const index = state.findIndex(ph => ph.id === action.payload.photoId)
@@ -30,12 +31,12 @@ const slice = createSlice({
 
     }
 })
-export const {setPhotoAC} = slice.actions
+export const {setPhoto} = slice.actions
 export const photoReducer = slice.reducer
 
 
 export type ActionsType =
-    ReturnType<typeof setPhotoAC>
+    ReturnType<typeof setPhoto>
     // | ReturnType<typeof removePictureAC>
     // | ReturnType<typeof setPicturesAC>;
 
@@ -45,8 +46,7 @@ export const getPhotoThunk = (page: number, per_page: number): ThunkType =>
     (dispatch) => {
         appApi.getPicture(page, per_page).then((res) => {
             console.log(res.data.photos)
-            debugger
-            dispatch(setPhotoAC({photo: res.data.photos}))
+            dispatch(setPhoto({photo: res.data.photos}))
         })
     }
 
