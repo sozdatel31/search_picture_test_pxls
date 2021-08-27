@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {getPhotoThunk} from "../../state/photoReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../state/store";
+import {PhotoBox} from "./PhotoBox/PhotoBox";
 
 export function PhotoContainer() {
     const photoArray = useSelector<AppRootStateType, Array<PhotoType>>(state => state.photo)
@@ -20,12 +21,6 @@ export function PhotoContainer() {
         setPage(cur=>cur + 1)
     }
 
-    const breakpointCols = {
-        default: 4,
-        1200: 3,
-        700: 2,
-        500: 1
-    }
     return (
         <div className={style.containerHomePage}>
             <div className={style.title}>
@@ -36,13 +31,8 @@ export function PhotoContainer() {
                 next={showMorePhotos}
                 hasMore={true}
                 loader={<div className="loader" key={0}>Loading ...</div>}>
-                {<Masonry
-                    breakpointCols={breakpointCols}
-                    className={style.photoContainer}>
-                    {photoArray ? photoArray.map(m => <img key={m.id} src={m.src.large} alt="bla bla"/>) : "Error"}
-                </Masonry>}
+               <PhotoBox photoArray={photoArray}/>
             </InfiniteScroll>
         </div>
     );
 }
-
