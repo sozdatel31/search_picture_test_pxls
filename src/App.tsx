@@ -1,6 +1,7 @@
 import React from 'react';
 import {Header} from "./components/Header/Header";
 import {PhotoContainer} from "./components/PhotoContainer/PhotoContainer";
+import {Router} from "./Route";
 
 type srcType = {
     landscape: string
@@ -37,7 +38,7 @@ function App() {
     return (
         <div>
             <Header/>
-            <PhotoContainer/>
+            <Router/>
         </div>
     );
 }
