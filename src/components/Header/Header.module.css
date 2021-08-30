@@ -28,6 +28,20 @@
 }
 
 .headerContainer {
+    background: rgba(255,255,255,0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 66px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0 1.15rem;
+    z-index: 30;
+}
+.headerContainerActive {
     background: #232a34;
     position: fixed;
     top: 0;
@@ -41,6 +55,8 @@
     padding: 0 1.15rem;
     z-index: 30;
 }
+
+
 
 .logoContainer {
     font-size: 19px;

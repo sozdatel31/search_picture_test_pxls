@@ -37,7 +37,6 @@ const slice = createSlice({
                 state.searchPhoto = action.payload.searchPhoto
                 return state
             }
-            return state
         },
         setSearchTitle(state, action: PayloadAction<{ searchTitleReducer: string, }>) {
             state.searchTitleReducer = (action.payload.searchTitleReducer)
@@ -77,7 +76,7 @@ export const getPhotoThunk = (page: number, per_page: number): ThunkType =>
         })
     }
 
-export const searchPhotoThunk = (query: string, per_page?: number, page?: number): ThunkType =>
+export const searchPhotoThunk = (query: string, per_page: number, page?: number): ThunkType =>
     (dispatch) => {
 
         appApi.searchPicture(query, per_page, page).then((res) => {

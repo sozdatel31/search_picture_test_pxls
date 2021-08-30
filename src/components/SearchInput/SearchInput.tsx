@@ -1,10 +1,14 @@
 import React, {ChangeEvent, useState} from 'react';
 import style from './SearchInput.module.css'
 import {useDispatch} from "react-redux";
-import {searchPhoto, searchPhotoThunk, setPhoto, setSearchTitle} from "../../state/photoReducer";
+import {searchPhotoThunk} from "../../state/photoReducer";
 import {useHistory} from 'react-router-dom';
 
-export function SearchInput() {
+type searchInputPropsType = {
+    visible?: boolean
+}
+
+export function SearchInput(props: searchInputPropsType) {
     const dispatch = useDispatch()
     let history = useHistory();
     const [search, setSearch] = useState<string>('')
@@ -19,7 +23,8 @@ export function SearchInput() {
 
 
     return (
-        <div className={style.searchInputContainer}>
+        <div className={style.searchInputContainer}
+             style={props.visible ? {visibility: "hidden"} : {visibility: "visible"}}>
             <input placeholder="Search for free photos" value={search} onChange={eventSearch} onSubmit={submitSearch}/>
             <button id="search-action" title="Search for stock photos" onClick={submitSearch}>
                 <i className={style.rd__svgIcon}>
