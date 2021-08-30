@@ -12,7 +12,7 @@ export const appApi = {
     getPicture(page: number, per_page: number) {
         return setInstance().get(`/v1/curated?page=${page}&per_page=${per_page}\n`)
     },
-    searchPicture(query: string, per_page: number) {
-        return setInstance().get(`/v1/search?query=${query}&per_page=${per_page}\n`)
+    searchPicture(query: string, per_page?: number, page?: number) {
+        return setInstance().get(`/v1/search?query=${query}&page=${page}&per_page=${per_page}\n`)
     }
 }

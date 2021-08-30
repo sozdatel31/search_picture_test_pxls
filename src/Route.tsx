@@ -8,7 +8,7 @@ export function Router() {
     return (
         <Switch>
             <Route exact path="/" render={() => <PhotoContainer/>}/>
-            <Route path="/search" render={() => <SearchPage/>}/>
+            <Route path="/search/:searchTitle" render={() => <SearchPage/>}/>
         </Switch>
     );
 }

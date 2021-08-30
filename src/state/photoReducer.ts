@@ -7,14 +7,14 @@ import {appApi} from "../api/api";
 type InitialStateType = {
     photo: Array<PhotoType>
     searchPhoto: Array<PhotoType>
-    searchTitle: string
+    searchTitleReducer: string
 }
 
 
 const initialState: InitialStateType = {
     photo: [],
     searchPhoto: [],
-    searchTitle: '',
+    searchTitleReducer: '',
 }
 
 const slice = createSlice({
@@ -23,13 +23,28 @@ const slice = createSlice({
     reducers: {
         setPhoto(state, action: PayloadAction<{ photo: Array<PhotoType> }>) {
             state.photo.push(...action.payload.photo)
-           return state
+            return state
         },
-        searchPhoto(state, action: PayloadAction<{ searchPhoto: Array<PhotoType> }>) {
-            state.searchPhoto.push(...action.payload.searchPhoto)
+        searchPhoto(state, action: PayloadAction<{ searchPhoto: Array<PhotoType>, searchTitle: string }>) {
+            if( state.searchTitleReducer === action.payload.searchTitle) {
+                state.searchPhoto.push(...action.payload.searchPhoto)
+                return state
+            }
+            if( state.searchTitleReducer !== action.payload.searchTitle) {
+                state.searchPhoto = action.payload.searchPhoto
+                return state
+            } else {
+                state.searchPhoto = action.payload.searchPhoto
+                return state
+            }
+            return state
+        },
+        setSearchTitle(state, action: PayloadAction<{ searchTitleReducer: string, }>) {
+            state.searchTitleReducer = (action.payload.searchTitleReducer)
 
-           return state
+            return state
         },
+
         // removePictureAC(state, action: PayloadAction<{ photoId: string }>) {
         //     const index = state.findIndex(ph => ph.id === action.payload.photoId)
         //     if (index > -1) {
@@ -44,14 +59,14 @@ const slice = createSlice({
 
     }
 })
-export const {setPhoto, searchPhoto} = slice.actions
+export const {setPhoto, searchPhoto, setSearchTitle} = slice.actions
 export const photoReducer = slice.reducer
 
 
 export type ActionsType =
     ReturnType<typeof setPhoto>
     | ReturnType<typeof searchPhoto>
-    // | ReturnType<typeof setPicturesAC>;
+// | ReturnType<typeof setPicturesAC>;
 
 type ThunkType = ThunkAction<void, AppRootStateType, unknown, ActionsType>;
 
@@ -62,11 +77,15 @@ export const getPhotoThunk = (page: number, per_page: number): ThunkType =>
         })
     }
 
-    export const searchPhotoThunk = (query: string, per_page: number): ThunkType =>
+export const searchPhotoThunk = (query: string, per_page?: number, page?: number): ThunkType =>
     (dispatch) => {
-        appApi.searchPicture(query, per_page).then((res) => {
+
+        appApi.searchPicture(query, per_page, page).then((res) => {
             console.log(res.data.photos)
-            dispatch(searchPhoto({searchPhoto: res.data.photos}))
+            dispatch(searchPhoto({
+                searchPhoto: res.data.photos,
+                searchTitle: query,
+            }))
         })
     }
 
