@@ -2,9 +2,14 @@ import React, {useState} from 'react';
 import style from './Header.module.css'
 import {SearchInput} from "../SearchInput/SearchInput";
 
-export function HeaderTop() {
+type HeaderTopPropsType = {
+    active?: boolean
+}
+
+export function HeaderTop(props: HeaderTopPropsType) {
 
     const [nav, setNav] = useState<boolean>(false)
+    const sss = !nav && props.active
 
     function setBgNavBar() {
         if (window.scrollY >= 90) {
@@ -17,7 +22,7 @@ export function HeaderTop() {
     window.addEventListener('scroll', setBgNavBar);
 
     return (
-        <div className={nav ? `${style.headerContainer} ${style.headerContainerActive}` : `${style.headerContainer}`}>
+        <div className={sss ? `${style.headerContainer} ` : `${style.headerContainer} ${style.headerContainerActive}`}>
             <a className={style.logoContainer} href="/">
                 <div className={style.logo}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 32 32">
@@ -32,7 +37,7 @@ export function HeaderTop() {
                 <div className={style.logoText}> Pexels</div>
             </a>
             <div className={style.headerInput}>
-                <SearchInput visible={!nav}/>
+                <SearchInput visible={sss}/>
             </div>
         </div>
     );

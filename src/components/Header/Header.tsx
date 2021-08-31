@@ -7,7 +7,7 @@ export function Header() {
 
     return (
         <div className={style.box}>
-            <HeaderTop/>
+            <HeaderTop active={true}/>
             <div className={style.centerContainer}>
                 <h1 className={style.centerContent}>The best free stock photos shared by talented
                     creators.</h1>

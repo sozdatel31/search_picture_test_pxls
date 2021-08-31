@@ -6,6 +6,7 @@ import {getPhotoThunk} from "../../state/photoReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../state/store";
 import {PhotoBox} from "./PhotoBox/PhotoBox";
+import {Header} from "../Header/Header";
 
 export function PhotoContainer() {
     const photoArray = useSelector<AppRootStateType, Array<PhotoType>>(state => state.photo.photo)
@@ -17,21 +18,23 @@ export function PhotoContainer() {
     }, [dispatch, page]);
 
     function showMorePhotos() {
-        setPage(cur=>cur + 1)
+        setPage(cur => cur + 1)
     }
 
-    return (
-        <div className={style.containerHomePage}>
-            <div className={style.title}>
-                <div className={style.titleContent}>Free Stock Photos</div>
+    return (<div>
+            <Header/>
+            <div className={style.containerHomePage}>
+                <div className={style.title}>
+                    <div className={style.titleContent}>Free Stock Photos</div>
+                </div>
+                <InfiniteScroll
+                    dataLength={photoArray.length}
+                    next={showMorePhotos}
+                    hasMore={true}
+                    loader={<div className="loader" key={0}>Loading ...</div>}>
+                    <PhotoBox photoArray={photoArray}/>
+                </InfiniteScroll>
             </div>
-            <InfiniteScroll
-                dataLength={photoArray.length}
-                next={showMorePhotos}
-                hasMore={true}
-                loader={<div className="loader" key={0}>Loading ...</div>}>
-               <PhotoBox photoArray={photoArray}/>
-            </InfiniteScroll>
         </div>
     );
 }
