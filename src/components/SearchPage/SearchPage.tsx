@@ -28,7 +28,7 @@ export function SearchPage() {
             <HeaderTop active={false}/>
             <div className={style.containerHomePage}>
                 <div className={style.title}>
-                    <div className={style.titleContent}>Search photo</div>
+                    <div className={style.titleContent}>{searchTitle} Images</div>
                 </div>
                 <InfiniteScroll
                     dataLength={searchArray.length}

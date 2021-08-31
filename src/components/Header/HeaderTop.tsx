@@ -9,20 +9,20 @@ type HeaderTopPropsType = {
 export function HeaderTop(props: HeaderTopPropsType) {
 
     const [nav, setNav] = useState<boolean>(false)
-    const sss = !nav && props.active
+    const block = !nav && props.active
 
-    function setBgNavBar() {
-        if (window.scrollY >= 90) {
+    function setNavBar() {
+        if (window.scrollY >= 100) {
             setNav(true);
         } else {
             setNav(false);
         }
     }
 
-    window.addEventListener('scroll', setBgNavBar);
+    window.addEventListener('scroll', setNavBar);
 
     return (
-        <div className={sss ? `${style.headerContainer} ` : `${style.headerContainer} ${style.headerContainerActive}`}>
+        <div className={block ? `${style.headerContainer} ` : `${style.headerContainer} ${style.headerContainerActive}`}>
             <a className={style.logoContainer} href="/">
                 <div className={style.logo}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 32 32">
@@ -37,7 +37,7 @@ export function HeaderTop(props: HeaderTopPropsType) {
                 <div className={style.logoText}> Pexels</div>
             </a>
             <div className={style.headerInput}>
-                <SearchInput visible={sss}/>
+                <SearchInput visible={block}/>
             </div>
         </div>
     );
