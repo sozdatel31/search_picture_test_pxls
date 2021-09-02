@@ -4,10 +4,32 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {PhotoType} from "../App";
 import {appApi} from "../api/api";
 
-type InitialStateType = {
+export type InitialStateType = {
     photo: Array<PhotoType>
     searchPhoto: Array<PhotoType>
     searchTitleReducer: string
+    photoObj?: {
+        avg_color: string
+        height: number
+        id: number
+        liked: boolean
+        photographer: string
+        photographer_id: number
+        photographer_url: string
+        src:
+            {
+                landscape: string,
+                large: string,
+                large2x: string,
+                medium: string,
+                original: string,
+                portrait: string,
+                small: string,
+                tiny: string,
+            },
+        url: string,
+        width: number
+    }
 }
 
 
@@ -15,6 +37,28 @@ const initialState: InitialStateType = {
     photo: [],
     searchPhoto: [],
     searchTitleReducer: '',
+    photoObj: {
+        avg_color: '',
+        height: 0,
+        id: 0,
+        liked: false,
+        photographer: '',
+        photographer_id: 0,
+        photographer_url: '',
+        src:
+            {
+                landscape: '',
+                large: '',
+                large2x: '',
+                medium: '',
+                original: '',
+                portrait: '',
+                small: '',
+                tiny: '',
+            },
+        url: '',
+        width: 0
+    }
 }
 
 const slice = createSlice({
@@ -26,11 +70,11 @@ const slice = createSlice({
             return state
         },
         searchPhoto(state, action: PayloadAction<{ searchPhoto: Array<PhotoType>, searchTitle: string }>) {
-            if( state.searchTitleReducer === action.payload.searchTitle) {
+            if (state.searchTitleReducer === action.payload.searchTitle) {
                 state.searchPhoto.push(...action.payload.searchPhoto)
                 return state
             }
-            if( state.searchTitleReducer !== action.payload.searchTitle) {
+            if (state.searchTitleReducer !== action.payload.searchTitle) {
                 state.searchPhoto = action.payload.searchPhoto
                 return state
             } else {
@@ -40,6 +84,11 @@ const slice = createSlice({
         },
         setSearchTitle(state, action: PayloadAction<{ searchTitleReducer: string, }>) {
             state.searchTitleReducer = (action.payload.searchTitleReducer)
+
+            return state
+        },
+        setSearchIdTitle(state, action: PayloadAction<{ photoObj: InitialStateType["photoObj"] }>) {
+            state.photoObj = (action.payload.photoObj)
 
             return state
         },
@@ -58,14 +107,14 @@ const slice = createSlice({
 
     }
 })
-export const {setPhoto, searchPhoto, setSearchTitle} = slice.actions
+export const {setPhoto, searchPhoto, setSearchTitle, setSearchIdTitle} = slice.actions
 export const photoReducer = slice.reducer
 
 
 export type ActionsType =
     ReturnType<typeof setPhoto>
     | ReturnType<typeof searchPhoto>
-// | ReturnType<typeof setPicturesAC>;
+    | ReturnType<typeof setSearchIdTitle>;
 
 type ThunkType = ThunkAction<void, AppRootStateType, unknown, ActionsType>;
 
@@ -84,6 +133,17 @@ export const searchPhotoThunk = (query: string, per_page: number, page?: number)
             dispatch(searchPhoto({
                 searchPhoto: res.data.photos,
                 searchTitle: query,
+            }))
+        })
+    }
+
+export const searchPhotoIdThunk = (id: number): ThunkType =>
+    (dispatch) => {
+
+        appApi.searchIdPicture(id).then((res) => {
+            console.log(res.data)
+            dispatch(setSearchIdTitle({
+                photoObj: res.data
             }))
         })
     }

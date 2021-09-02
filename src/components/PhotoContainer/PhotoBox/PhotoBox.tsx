@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import style from './PhotoBox.module.css'
 import {PhotoType} from "../../../App";
 import Masonry from "react-masonry-css";
+import {useHistory} from "react-router-dom";
+import {searchPhotoIdThunk} from "../../../state/photoReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../../state/store";
 
 type PhotoBoxType = {
     photoArray: Array<PhotoType>
@@ -16,11 +20,27 @@ const breakpointCols = {
 
 export function PhotoBox(props: PhotoBoxType) {
 
+    const dispatch = useDispatch()
+    const [isModal, setModal] = useState<boolean>(false)
+    let history = useHistory();
+
+
+
+    const callbackOnClick = (id: number)=> {
+        dispatch(searchPhotoIdThunk(id))
+        history.push(`/photo/${id}`)
+
+    }
+
+    const onClose = () => setModal(false)
     return (
         <Masonry
             breakpointCols={breakpointCols}
             className={style.photoContainer}>
-            {props.photoArray ? props.photoArray.map(m => <div key={m.id} className={style.box}>
+            {props.photoArray ? props.photoArray.map(m =>
+
+                <div key={m.id} className={style.box} onClick={()=>callbackOnClick(m.id)}>
+
                 <img src={m.src.large} alt="bla bla"/>
                 <div className={style.boxInfo}>
 
@@ -32,10 +52,7 @@ export function PhotoBox(props: PhotoBoxType) {
                             </a>
                         </span>
                     <span>
-                            <a href=" " className={style.downloadIcon} target="_blank" rel="noopener noreferrer"
-                               onClick={(e) => {
-                                   e.preventDefault();
-                               }}>
+                            <a href='' className={style.downloadIcon} target="_blank" rel="noopener noreferrer">
                                 <i>
                                     <svg xmlns="http://www.w3.org/2000/svg" height="20px" width="20px" fill="white"
                                          version="1.1" x="0px" y="0px" viewBox="0 0 100 100"><g><path

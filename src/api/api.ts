@@ -14,5 +14,8 @@ export const appApi = {
     },
     searchPicture(query: string, per_page: number, page?: number) {
         return setInstance().get(`/v1/search?query=${query}&page=${page}&per_page=${per_page}\n`)
+    },
+    searchIdPicture(id: number) {
+        return setInstance().get(`/v1/photos/${id}\n`)
     }
 }
